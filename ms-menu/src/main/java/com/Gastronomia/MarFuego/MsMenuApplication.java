@@ -1,4 +1,4 @@
-package com.marfuego.ms_menu;
+package com.Gastronomia.MarFuego;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

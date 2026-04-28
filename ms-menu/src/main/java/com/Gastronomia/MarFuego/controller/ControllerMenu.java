@@ -1,8 +1,8 @@
-package com.marfuego.ms_menu.controller;
+package com.Gastronomia.MarFuego.controller;
 
-import com.marfuego.ms_menu.model.PlatoMenu;
-import com.marfuego.ms_menu.service.ServiceMenu;
-import com.marfuego.ms_menu.repository.RepositoryMenu;
+import com.Gastronomia.MarFuego.model.PlatoMenu;
+import com.Gastronomia.MarFuego.service.ServiceMenu;
+import com.Gastronomia.MarFuego.repository.RepositoryMenu;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,3 +30,4 @@ public class ControllerMenu {
         return ResponseEntity.ok(service.procesarReglasPlato(plato));
     }
 }
+

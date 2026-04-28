@@ -1,10 +1,10 @@
-package com.marfuego.ms_menu;
+package com.Gastronomia.MarFuego;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MsMenuApplicationTests {
+class MarFuegoApplicationTests {
 
 	@Test
 	void contextLoads() {

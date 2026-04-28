@@ -1,6 +1,6 @@
-package com.marfuego.ms_menu.repository;
+package com.Gastronomia.MarFuego.repository;
 
-import com.marfuego.ms_menu.model.PlatoMenu;
+import com.Gastronomia.MarFuego.model.PlatoMenu;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import java.util.List;

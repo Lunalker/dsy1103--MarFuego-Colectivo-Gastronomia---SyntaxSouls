@@ -1,4 +1,4 @@
-package com.marfuego.ms_menu.model;
+package com.Gastronomia.MarFuego.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Entity
 @Data
-class IngredienteGastronomia {
+class IngredienteMenu {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
