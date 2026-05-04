@@ -27,6 +27,8 @@ public class ControllerMenu {
 
     @PostMapping("/platos")
     public ResponseEntity<PlatoMenu> crear(@Valid @RequestBody PlatoMenu plato) {
-        return ResponseEntity.ok(service.procesarReglasPlato(plato));
+        // Se devuelve un estado 201 al crear un nuevo plato
+        PlatoMenu nuevoPlato = service.procesarReglasPlato(plato);
+        return ResponseEntity.status(201).body(nuevoPlato);
     }
 }
