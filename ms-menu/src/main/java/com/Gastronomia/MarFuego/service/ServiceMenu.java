@@ -1,7 +1,7 @@
-package com.marfuego.ms_menu.service;
+package com.Gastronomia.MarFuego.service;
 
-import com.marfuego.ms_menu.model.PlatoMenu;
-import com.marfuego.ms_menu.repository.RepositoryMenu;
+import com.Gastronomia.MarFuego.model.PlatoMenu;
+import com.Gastronomia.MarFuego.repository.RepositoryMenu;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,3 +27,4 @@ public class ServiceMenu {
         return platoRepo.save(plato);
     }
 }
+

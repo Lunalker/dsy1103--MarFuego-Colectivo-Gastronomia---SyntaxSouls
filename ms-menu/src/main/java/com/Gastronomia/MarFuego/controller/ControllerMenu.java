@@ -1,8 +1,8 @@
-package com.marfuego.ms_menu.controller;
+package com.Gastronomia.MarFuego.controller;
 
-import com.marfuego.ms_menu.model.PlatoMenu;
-import com.marfuego.ms_menu.service.ServiceMenu;
-import com.marfuego.ms_menu.repository.RepositoryMenu;
+import com.Gastronomia.MarFuego.model.PlatoMenu;
+import com.Gastronomia.MarFuego.service.ServiceMenu;
+import com.Gastronomia.MarFuego.repository.RepositoryMenu;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +27,7 @@ public class ControllerMenu {
 
     @PostMapping("/platos")
     public ResponseEntity<PlatoMenu> crear(@Valid @RequestBody PlatoMenu plato) {
-        // Se devuelve un estado 201 al crear un nuevo plato
-        PlatoMenu nuevoPlato = service.procesarReglasPlato(plato);
-        return ResponseEntity.status(201).body(nuevoPlato);
+        return ResponseEntity.ok(service.procesarReglasPlato(plato));
     }
 }
+

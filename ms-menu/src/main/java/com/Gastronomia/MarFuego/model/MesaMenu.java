@@ -1,4 +1,4 @@
-package com.marfuego.ms_menu.model;
+package com.Gastronomia.MarFuego.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
