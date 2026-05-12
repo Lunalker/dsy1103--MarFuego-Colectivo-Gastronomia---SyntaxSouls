@@ -1,20 +1,24 @@
 package com.marfuego.ms_locales.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Entity
-@Table(name = "locales")
+@Table(name = "local")
 @Data
 public class LocalLocales {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "El nombre del local es obligatorio")
+    @Column(nullable = false, length = 120)
     private String nombre;
 
-    @NotBlank(message = "La ubicación es obligatoria")
-    private String ubicacion; // Ejemplo: Puerto Montt, Castro, etc.
+    @Column(nullable = false, length = 200)
+    private String direccion;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 30)
+    private Ubicacion ubicacion;
 }

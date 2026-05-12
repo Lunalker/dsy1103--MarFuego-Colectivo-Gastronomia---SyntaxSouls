@@ -1,23 +1,34 @@
 package com.marfuego.ms_locales.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 @Entity
-@Table(name = "mesas")
+@Table(name = "mesa")
 @Data
 public class MesaLocales {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+    @Column(name = "numero_mesa", nullable = false)
     private Integer numeroMesa;
 
-    private String estado; // LIBRE, OCUPADA, LIMPIEZA [cite: 3]
+    @Column(nullable = false)
+    private Integer capacidad;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 20)
+    private Estado estado;
+
+    // R3: guardamos la hora cuando empieza la limpieza, asi sabemos cuando pasa a LIBRE
+    @Column(name = "inicio_limpieza")
+    private LocalDateTime inicioLimpieza;
 
     @ManyToOne
-    @JoinColumn(name = "local_id")
+    @JoinColumn(name = "local_id", nullable = false)
     private LocalLocales local;
 }
