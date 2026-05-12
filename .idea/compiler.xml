@@ -18,6 +18,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="MarFuego" options="-parameters" />
       <module name="ms-caja" options="-parameters" />
       <module name="ms-inventario" options="-parameters" />
       <module name="ms-locales" options="-parameters" />
