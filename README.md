@@ -14,6 +14,8 @@
 | 2 | ms-[Inventario] | 8082   | ... |
 | 3 | ms-[Pedidos]    | 8083   | ... |
 | 4 | ms-[Locales]    | 8084   | ... |
+| 4 | ms-[Caja]       | 8085   | ... |
+| 4 | ms-[Registro]   | 8086   | ... |
 ## Tecnologías Utilizadas
 - Java 17 / Spring Boot 3.x
 - JPA + Hibernate
