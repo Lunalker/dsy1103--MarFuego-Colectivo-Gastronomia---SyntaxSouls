@@ -10,12 +10,12 @@
 ## Microservicios Implementados
 | # | Microservicio   | Puerto | Descripción |
 |---|-----------------|--------|-------------|
-| 1 | ms-[Menu]       | 8081   | ... |
-| 2 | ms-[Inventario] | 8082   | ... |
-| 3 | ms-[Pedidos]    | 8083   | ... |
-| 4 | ms-[Locales]    | 8084   | ... |
-| 4 | ms-[Caja]       | 8085   | ... |
-| 4 | ms-[Registro]   | 8086   | ... |
+| 1 | ms-[Menu]       | 8080   | ... |
+| 2 | ms-[Pedidos]    | 8081   | ... |
+| 3 | ms-[Inventario] | 8082   | ... |
+| 4 | ms-[Locales]    | 8083   | ... |
+| 5 | ms-[Caja]       | 8084   | ... |
+| 6 | ms-[Registro]   | 8085   | ... |
 ## Tecnologías Utilizadas
 - Java 17 / Spring Boot 3.x
 - JPA + Hibernate
