@@ -87,7 +87,6 @@ porque ms-reportes los va a consultar.
 ├── ms-inventario/     # Microservicio del inventario
 ├── ms-pedidos/        # Microservicio de pedidos
 ├── ms-reportes/       # Microservicio de reportes (consume otros MS)
-├── postman/           # Coleccion de Postman
 └── README.md
 ```
 
