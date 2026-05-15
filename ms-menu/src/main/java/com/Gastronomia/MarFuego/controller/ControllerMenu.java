@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/gastronomia")
+@RequestMapping("/api/v1/menu")
 public class ControllerMenu {
 
     @Autowired
@@ -23,6 +23,11 @@ public class ControllerMenu {
     @GetMapping("/platos")
     public List<PlatoMenu> listar() {
         return repository.findAll();
+    }
+
+    @GetMapping("/platos/{id}")
+    public PlatoMenu obtenerPorId(@PathVariable Long id) {
+        return repository.findById(id).orElse(null);
     }
 
     @PostMapping("/platos")
