@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/MarFuego (Corregido).iml" filepath="$PROJECT_DIR$/.idea/MarFuego (Corregido).iml" />
+      <module fileurl="file://$PROJECT_DIR$/ms-reportes/ms-reportes.iml" filepath="$PROJECT_DIR$/ms-reportes/ms-reportes.iml" />
     </modules>
   </component>
 </project>
