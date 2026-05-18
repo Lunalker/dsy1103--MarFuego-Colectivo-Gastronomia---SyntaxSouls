@@ -1,0 +1,103 @@
+{
+	"info": {
+		"_postman_id": "marfuego-ep2-collection",
+		"name": "MarFuego - EP2 DSY1103",
+		"description": "Coleccion de pruebas para MarFuego Colectivo Gastronomia.\n5 microservicios: locales (8081), menu (8082), inventario (8083), pedidos (8084), reportes (8086).\nReglas R1, R2, R3, R5 implementadas.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ms-locales (8081)",
+			"item": [
+				{"name": "Crear local Castro", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\n  \"nombre\": \"MarFuego Castro\",\n  \"direccion\": \"Av. Pedro Montt 123, Castro\",\n  \"ubicacion\": \"CASTRO\"\n}"}, "url": {"raw": "{{ms_locales}}/api/v1/locales", "host": ["{{ms_locales}}"], "path": ["api", "v1", "locales"]}}},
+				{"name": "Crear local Puerto Montt", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\n  \"nombre\": \"MarFuego Centro\",\n  \"direccion\": \"Av. Diego Portales 555, Puerto Montt\",\n  \"ubicacion\": \"CENTRO_PUERTO\"\n}"}, "url": {"raw": "{{ms_locales}}/api/v1/locales", "host": ["{{ms_locales}}"], "path": ["api", "v1", "locales"]}}},
+				{"name": "Listar locales", "request": {"method": "GET", "url": {"raw": "{{ms_locales}}/api/v1/locales", "host": ["{{ms_locales}}"], "path": ["api", "v1", "locales"]}}},
+				{"name": "Obtener local 1", "request": {"method": "GET", "url": {"raw": "{{ms_locales}}/api/v1/locales/1", "host": ["{{ms_locales}}"], "path": ["api", "v1", "locales", "1"]}}},
+				{"name": "Local inexistente (404)", "request": {"method": "GET", "url": {"raw": "{{ms_locales}}/api/v1/locales/999", "host": ["{{ms_locales}}"], "path": ["api", "v1", "locales", "999"]}}},
+				{"name": "Validacion fallida (400)", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\n  \"nombre\": \"\",\n  \"direccion\": \"\",\n  \"ubicacion\": null\n}"}, "url": {"raw": "{{ms_locales}}/api/v1/locales", "host": ["{{ms_locales}}"], "path": ["api", "v1", "locales"]}}},
+				{"name": "Crear mesa 1", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\n  \"numeroMesa\": 1,\n  \"capacidad\": 4,\n  \"localId\": 1\n}"}, "url": {"raw": "{{ms_locales}}/api/v1/locales/mesas", "host": ["{{ms_locales}}"], "path": ["api", "v1", "locales", "mesas"]}}},
+				{"name": "Listar mesas del local 1", "request": {"method": "GET", "url": {"raw": "{{ms_locales}}/api/v1/locales/1/mesas", "host": ["{{ms_locales}}"], "path": ["api", "v1", "locales", "1", "mesas"]}}},
+				{"name": "Mesas por estado LIBRE", "request": {"method": "GET", "url": {"raw": "{{ms_locales}}/api/v1/locales/mesas/estado/LIBRE", "host": ["{{ms_locales}}"], "path": ["api", "v1", "locales", "mesas", "estado", "LIBRE"]}}},
+				{"name": "R3 Reservar mesa", "request": {"method": "POST", "url": {"raw": "{{ms_locales}}/api/v1/locales/mesas/1/reservar", "host": ["{{ms_locales}}"], "path": ["api", "v1", "locales", "mesas", "1", "reservar"]}}},
+				{"name": "R3 Reservar otra vez (422)", "request": {"method": "POST", "url": {"raw": "{{ms_locales}}/api/v1/locales/mesas/1/reservar", "host": ["{{ms_locales}}"], "path": ["api", "v1", "locales", "mesas", "1", "reservar"]}}},
+				{"name": "R3 Ocupar mesa", "request": {"method": "POST", "url": {"raw": "{{ms_locales}}/api/v1/locales/mesas/1/ocupar", "host": ["{{ms_locales}}"], "path": ["api", "v1", "locales", "mesas", "1", "ocupar"]}}},
+				{"name": "R3 Liberar mesa", "request": {"method": "POST", "url": {"raw": "{{ms_locales}}/api/v1/locales/mesas/1/liberar", "host": ["{{ms_locales}}"], "path": ["api", "v1", "locales", "mesas", "1", "liberar"]}}}
+			]
+		},
+		{
+			"name": "ms-menu (8082)",
+			"item": [
+				{"name": "Crear plato Curanto (margen OK)", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\n  \"nombre\": \"Curanto en hoyo\",\n  \"descripcion\": \"Curanto chilote tradicional\",\n  \"categoria\": \"FONDO\",\n  \"precioVenta\": 15000,\n  \"costoProduccion\": 4000,\n  \"disponible\": true,\n  \"localId\": 1\n}"}, "url": {"raw": "{{ms_menu}}/api/v1/menu/platos", "host": ["{{ms_menu}}"], "path": ["api", "v1", "menu", "platos"]}}},
+				{"name": "R5 Plato margen BAJO (warning)", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\n  \"nombre\": \"Cazuela\",\n  \"descripcion\": \"Cazuela tradicional\",\n  \"categoria\": \"FONDO\",\n  \"precioVenta\": 5000,\n  \"costoProduccion\": 3000,\n  \"disponible\": true,\n  \"localId\": 1\n}"}, "url": {"raw": "{{ms_menu}}/api/v1/menu/platos", "host": ["{{ms_menu}}"], "path": ["api", "v1", "menu", "platos"]}}},
+				{"name": "Listar todos los platos", "request": {"method": "GET", "url": {"raw": "{{ms_menu}}/api/v1/menu/platos", "host": ["{{ms_menu}}"], "path": ["api", "v1", "menu", "platos"]}}},
+				{"name": "Obtener plato 1", "request": {"method": "GET", "url": {"raw": "{{ms_menu}}/api/v1/menu/platos/1", "host": ["{{ms_menu}}"], "path": ["api", "v1", "menu", "platos", "1"]}}},
+				{"name": "R1 Listar disponibles del local 1", "request": {"method": "GET", "url": {"raw": "{{ms_menu}}/api/v1/menu/platos/local/1/disponibles", "host": ["{{ms_menu}}"], "path": ["api", "v1", "menu", "platos", "local", "1", "disponibles"]}}},
+				{"name": "R1 Cambiar disponibilidad a false", "request": {"method": "PATCH", "url": {"raw": "{{ms_menu}}/api/v1/menu/platos/1/disponibilidad?disponible=false", "host": ["{{ms_menu}}"], "path": ["api", "v1", "menu", "platos", "1", "disponibilidad"], "query": [{"key": "disponible", "value": "false"}]}}},
+				{"name": "R1 Cambiar al mismo estado (422)", "request": {"method": "PATCH", "url": {"raw": "{{ms_menu}}/api/v1/menu/platos/1/disponibilidad?disponible=false", "host": ["{{ms_menu}}"], "path": ["api", "v1", "menu", "platos", "1", "disponibilidad"], "query": [{"key": "disponible", "value": "false"}]}}},
+				{"name": "Actualizar plato 1", "request": {"method": "PUT", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\n  \"nombre\": \"Curanto Premium\",\n  \"descripcion\": \"Premium\",\n  \"categoria\": \"FONDO\",\n  \"precioVenta\": 18000,\n  \"costoProduccion\": 5000,\n  \"disponible\": true,\n  \"localId\": 1\n}"}, "url": {"raw": "{{ms_menu}}/api/v1/menu/platos/1", "host": ["{{ms_menu}}"], "path": ["api", "v1", "menu", "platos", "1"]}}},
+				{"name": "Validacion fallida (400)", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\n  \"nombre\": \"\",\n  \"categoria\": \"\",\n  \"precioVenta\": -100,\n  \"costoProduccion\": null,\n  \"disponible\": null,\n  \"localId\": 0\n}"}, "url": {"raw": "{{ms_menu}}/api/v1/menu/platos", "host": ["{{ms_menu}}"], "path": ["api", "v1", "menu", "platos"]}}},
+				{"name": "Plato no existe (404)", "request": {"method": "GET", "url": {"raw": "{{ms_menu}}/api/v1/menu/platos/999", "host": ["{{ms_menu}}"], "path": ["api", "v1", "menu", "platos", "999"]}}},
+				{"name": "Eliminar plato 2", "request": {"method": "DELETE", "url": {"raw": "{{ms_menu}}/api/v1/menu/platos/2", "host": ["{{ms_menu}}"], "path": ["api", "v1", "menu", "platos", "2"]}}}
+			]
+		},
+		{
+			"name": "ms-inventario (8083)",
+			"item": [
+				{"name": "Crear ingrediente Cordero", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\n  \"nombre\": \"Cordero chilote\",\n  \"stockActual\": 50.0,\n  \"stockMinimo\": 10.0,\n  \"unidadMedida\": \"KG\"\n}"}, "url": {"raw": "{{ms_inventario}}/api/v1/inventario/ingredientes", "host": ["{{ms_inventario}}"], "path": ["api", "v1", "inventario", "ingredientes"]}}},
+				{"name": "Crear Papa Chilota", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\n  \"nombre\": \"Papa chilota\",\n  \"stockActual\": 100.0,\n  \"stockMinimo\": 20.0,\n  \"unidadMedida\": \"KG\"\n}"}, "url": {"raw": "{{ms_inventario}}/api/v1/inventario/ingredientes", "host": ["{{ms_inventario}}"], "path": ["api", "v1", "inventario", "ingredientes"]}}},
+				{"name": "Listar ingredientes", "request": {"method": "GET", "url": {"raw": "{{ms_inventario}}/api/v1/inventario/ingredientes", "host": ["{{ms_inventario}}"], "path": ["api", "v1", "inventario", "ingredientes"]}}},
+				{"name": "R2 Descontar 5 KG", "request": {"method": "POST", "url": {"raw": "{{ms_inventario}}/api/v1/inventario/ingredientes/1/descontar?cantidad=5", "host": ["{{ms_inventario}}"], "path": ["api", "v1", "inventario", "ingredientes", "1", "descontar"], "query": [{"key": "cantidad", "value": "5"}]}}},
+				{"name": "R2 Descontar 40 KG (ALERTA)", "request": {"method": "POST", "url": {"raw": "{{ms_inventario}}/api/v1/inventario/ingredientes/1/descontar?cantidad=40", "host": ["{{ms_inventario}}"], "path": ["api", "v1", "inventario", "ingredientes", "1", "descontar"], "query": [{"key": "cantidad", "value": "40"}]}}},
+				{"name": "R2 Stock insuficiente (422)", "request": {"method": "POST", "url": {"raw": "{{ms_inventario}}/api/v1/inventario/ingredientes/1/descontar?cantidad=999", "host": ["{{ms_inventario}}"], "path": ["api", "v1", "inventario", "ingredientes", "1", "descontar"], "query": [{"key": "cantidad", "value": "999"}]}}},
+				{"name": "R2 Listar alertas", "request": {"method": "GET", "url": {"raw": "{{ms_inventario}}/api/v1/inventario/ingredientes/alertas", "host": ["{{ms_inventario}}"], "path": ["api", "v1", "inventario", "ingredientes", "alertas"]}}},
+				{"name": "Validacion fallida (400)", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\n  \"nombre\": \"\",\n  \"stockActual\": -5,\n  \"stockMinimo\": null,\n  \"unidadMedida\": \"\"\n}"}, "url": {"raw": "{{ms_inventario}}/api/v1/inventario/ingredientes", "host": ["{{ms_inventario}}"], "path": ["api", "v1", "inventario", "ingredientes"]}}},
+				{"name": "Ingrediente no existe (404)", "request": {"method": "GET", "url": {"raw": "{{ms_inventario}}/api/v1/inventario/ingredientes/999", "host": ["{{ms_inventario}}"], "path": ["api", "v1", "inventario", "ingredientes", "999"]}}}
+			]
+		},
+		{
+			"name": "ms-pedidos (8084)",
+			"item": [
+				{"name": "Crear pedido COMEDOR", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\n  \"mesaId\": 1,\n  \"localId\": 1,\n  \"tipo\": \"COMEDOR\",\n  \"detalles\": [\n    { \"platoId\": 1, \"cantidad\": 2, \"precioUnitario\": 15000 },\n    { \"platoId\": 2, \"cantidad\": 1, \"precioUnitario\": 5000 }\n  ]\n}"}, "url": {"raw": "{{ms_pedidos}}/api/v1/pedidos", "host": ["{{ms_pedidos}}"], "path": ["api", "v1", "pedidos"]}}},
+				{"name": "Crear pedido DELIVERY", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\n  \"localId\": 1,\n  \"tipo\": \"DELIVERY\",\n  \"detalles\": [\n    { \"platoId\": 1, \"cantidad\": 1, \"precioUnitario\": 15000 }\n  ]\n}"}, "url": {"raw": "{{ms_pedidos}}/api/v1/pedidos", "host": ["{{ms_pedidos}}"], "path": ["api", "v1", "pedidos"]}}},
+				{"name": "Listar pedidos", "request": {"method": "GET", "url": {"raw": "{{ms_pedidos}}/api/v1/pedidos", "host": ["{{ms_pedidos}}"], "path": ["api", "v1", "pedidos"]}}},
+				{"name": "Obtener pedido 1", "request": {"method": "GET", "url": {"raw": "{{ms_pedidos}}/api/v1/pedidos/1", "host": ["{{ms_pedidos}}"], "path": ["api", "v1", "pedidos", "1"]}}},
+				{"name": "Pedidos del local 1", "request": {"method": "GET", "url": {"raw": "{{ms_pedidos}}/api/v1/pedidos/local/1", "host": ["{{ms_pedidos}}"], "path": ["api", "v1", "pedidos", "local", "1"]}}},
+				{"name": "Pedidos PENDIENTES", "request": {"method": "GET", "url": {"raw": "{{ms_pedidos}}/api/v1/pedidos/estado/PENDIENTE", "host": ["{{ms_pedidos}}"], "path": ["api", "v1", "pedidos", "estado", "PENDIENTE"]}}},
+				{"name": "Actualizar pedido 1", "request": {"method": "PUT", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\n  \"mesaId\": 1,\n  \"localId\": 1,\n  \"tipo\": \"COMEDOR\",\n  \"detalles\": [\n    { \"platoId\": 1, \"cantidad\": 3, \"precioUnitario\": 15000 }\n  ]\n}"}, "url": {"raw": "{{ms_pedidos}}/api/v1/pedidos/1", "host": ["{{ms_pedidos}}"], "path": ["api", "v1", "pedidos", "1"]}}},
+				{"name": "Estado EN_PREPARACION", "request": {"method": "PATCH", "url": {"raw": "{{ms_pedidos}}/api/v1/pedidos/1/estado?estado=EN_PREPARACION", "host": ["{{ms_pedidos}}"], "path": ["api", "v1", "pedidos", "1", "estado"], "query": [{"key": "estado", "value": "EN_PREPARACION"}]}}},
+				{"name": "Estado ENTREGADO", "request": {"method": "PATCH", "url": {"raw": "{{ms_pedidos}}/api/v1/pedidos/1/estado?estado=ENTREGADO", "host": ["{{ms_pedidos}}"], "path": ["api", "v1", "pedidos", "1", "estado"], "query": [{"key": "estado", "value": "ENTREGADO"}]}}},
+				{"name": "Estado invalido (422)", "request": {"method": "PATCH", "url": {"raw": "{{ms_pedidos}}/api/v1/pedidos/1/estado?estado=INVALIDO", "host": ["{{ms_pedidos}}"], "path": ["api", "v1", "pedidos", "1", "estado"], "query": [{"key": "estado", "value": "INVALIDO"}]}}},
+				{"name": "COMEDOR sin mesaId (422)", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\n  \"localId\": 1,\n  \"tipo\": \"COMEDOR\",\n  \"detalles\": [\n    { \"platoId\": 1, \"cantidad\": 1, \"precioUnitario\": 15000 }\n  ]\n}"}, "url": {"raw": "{{ms_pedidos}}/api/v1/pedidos", "host": ["{{ms_pedidos}}"], "path": ["api", "v1", "pedidos"]}}},
+				{"name": "Sin detalles (400)", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\n  \"mesaId\": 1,\n  \"localId\": 1,\n  \"tipo\": \"COMEDOR\",\n  \"detalles\": []\n}"}, "url": {"raw": "{{ms_pedidos}}/api/v1/pedidos", "host": ["{{ms_pedidos}}"], "path": ["api", "v1", "pedidos"]}}},
+				{"name": "Pedido no existe (404)", "request": {"method": "GET", "url": {"raw": "{{ms_pedidos}}/api/v1/pedidos/999", "host": ["{{ms_pedidos}}"], "path": ["api", "v1", "pedidos", "999"]}}}
+			]
+		},
+		{
+			"name": "ms-caja (8085)",
+			"item": [
+				{"name": "Crear boleta", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\n  \"pedidoId\": 1,\n  \"nombreCliente\": \"Juan Perez\",\n  \"montoTotal\": 30000,\n  \"fecha\": \"2026-05-11\",\n  \"metodoPago\": \"TARJETA\"\n}"}, "url": {"raw": "{{ms_caja}}/api/v1/caja/boletas", "host": ["{{ms_caja}}"], "path": ["api", "v1", "caja", "boletas"]}}},
+				{"name": "Listar boletas", "request": {"method": "GET", "url": {"raw": "{{ms_caja}}/api/v1/caja/boletas", "host": ["{{ms_caja}}"], "path": ["api", "v1", "caja", "boletas"]}}},
+				{"name": "Obtener boleta 1", "request": {"method": "GET", "url": {"raw": "{{ms_caja}}/api/v1/caja/boletas/1", "host": ["{{ms_caja}}"], "path": ["api", "v1", "caja", "boletas", "1"]}}},
+				{"name": "R4 Boleta por pedido", "request": {"method": "GET", "url": {"raw": "{{ms_caja}}/api/v1/caja/boletas/pedido/1", "host": ["{{ms_caja}}"], "path": ["api", "v1", "caja", "boletas", "pedido", "1"]}}},
+				{"name": "Crear factura", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\n  \"razonSocial\": \"Empresa SA\",\n  \"rut\": \"76543210-K\",\n  \"montoTotal\": 50000,\n  \"metodoPago\": \"TRANSFERENCIA\"\n}"}, "url": {"raw": "{{ms_caja}}/api/v1/caja/facturas", "host": ["{{ms_caja}}"], "path": ["api", "v1", "caja", "facturas"]}}},
+				{"name": "Listar facturas", "request": {"method": "GET", "url": {"raw": "{{ms_caja}}/api/v1/caja/facturas", "host": ["{{ms_caja}}"], "path": ["api", "v1", "caja", "facturas"]}}}
+			]
+		},
+		{
+			"name": "ms-reportes (8086)",
+			"item": [
+				{"name": "Resumen del local 1 (3 MS)", "request": {"method": "GET", "url": {"raw": "{{ms_reportes}}/api/v1/reportes/resumen-local/1", "host": ["{{ms_reportes}}"], "path": ["api", "v1", "reportes", "resumen-local", "1"]}}},
+				{"name": "Stock critico (R2)", "request": {"method": "GET", "url": {"raw": "{{ms_reportes}}/api/v1/reportes/stock-critico", "host": ["{{ms_reportes}}"], "path": ["api", "v1", "reportes", "stock-critico"]}}},
+				{"name": "Rentabilidad platos (R5)", "request": {"method": "GET", "url": {"raw": "{{ms_reportes}}/api/v1/reportes/rentabilidad-platos", "host": ["{{ms_reportes}}"], "path": ["api", "v1", "reportes", "rentabilidad-platos"]}}}
+			]
+		}
+	],
+	"variable": [
+		{"key": "ms_locales", "value": "http://localhost:8081"},
+		{"key": "ms_menu", "value": "http://localhost:8082"},
+		{"key": "ms_inventario", "value": "http://localhost:8083"},
+		{"key": "ms_pedidos", "value": "http://localhost:8084"},
+		{"key": "ms_caja", "value": "http://localhost:8085"},
+		{"key": "ms_reportes", "value": "http://localhost:8086"}
+	]
+}

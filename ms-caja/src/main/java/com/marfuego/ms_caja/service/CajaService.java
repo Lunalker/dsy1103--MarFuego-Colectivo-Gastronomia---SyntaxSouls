@@ -35,6 +35,11 @@ public class CajaService {
         return boletaRepository.findById(id).orElse(null);
     }
 
+    // R4: trae la boleta de un pedido, para saber si fue pagado
+    public BoletaCaja buscarBoletaPorPedido(Long pedidoId) {
+        return boletaRepository.findByPedidoId(pedidoId);
+    }
+
     //Aca esta lo que tenga que ver con las facturas
     public List<FacturaCaja> listarFacturas() {
         return facturaRepository.findAll();

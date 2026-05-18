@@ -30,6 +30,12 @@ public class CajaController {
         return service.buscarBoletaPorId(id);
     }
 
+    // R4: buscar la boleta de un pedido (lo va a usar ms-pedidos)
+    @GetMapping("/boletas/pedido/{pedidoId}")
+    public BoletaCaja buscarBoletaPorPedido(@PathVariable Long pedidoId) {
+        return service.buscarBoletaPorPedido(pedidoId);
+    }
+
     @PostMapping("/boletas")
     public BoletaCaja guardarBoleta(@Valid @RequestBody BoletaCaja boleta) {
         return service.guardarBoleta(boleta);

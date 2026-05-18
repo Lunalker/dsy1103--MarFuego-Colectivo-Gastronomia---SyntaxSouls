@@ -1,0 +1,25 @@
+# Archivos compilados de Maven
+**/target/
+*.class
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# VSCode
+.vscode/
+
+# Eclipse
+.settings/
+.project
+.classpath
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Maven wrapper
+.mvn/wrapper/maven-wrapper.jar
