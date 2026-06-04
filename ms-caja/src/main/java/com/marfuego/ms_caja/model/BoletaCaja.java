@@ -1,5 +1,6 @@
 package com.marfuego.ms_caja.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -13,23 +14,59 @@ import java.time.LocalDate;
 @Entity
 @Data
 @NoArgsConstructor
+
+@Schema(
+        name = "Boleta",
+        description = "Representa la boleta del sistema"
+)
+
 public class BoletaCaja {
+
+
+    @Schema(
+            description = "Identificador único",
+            example = "1"
+    )
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     // Id del pedido al que pertenece la boleta (R4: para validar pago del delivery)
+
+    @Schema(
+            description = "Identificador único",
+            example = "1"
+    )
+
     private Long pedidoId;
 
+    @Schema(
+            description = "Nombre completo del cliente",
+            example = "victor espada"
+    )
     @NotBlank(message = "El Campo no puede ir vacio")
     private String nombreCliente;
 
+
+    @Schema(
+            description = "Ingreso del monto total de la boleta",
+            example = "10000"
+    )
     @Min(value = 0, message = "El monto total no puede ser negativo")
     private Double montoTotal;
 
+    @Schema(
+            description = "Fecha de creacion de la boleta",
+            example = "2026-05-11"
+    )
     @PastOrPresent(message = "La fecha introducida debe ser valida")
     private LocalDate fecha;
+
+    @Schema(
+            description = "Metodo de pago con el que se opera ",
+            example = "EFECTIVO"
+    )
 
     @Enumerated(EnumType.STRING)
     @NotNull

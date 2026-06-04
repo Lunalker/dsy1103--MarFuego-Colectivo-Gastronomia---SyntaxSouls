@@ -10,7 +10,6 @@
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
         </processorPath>
-        <module name="ms-caja" />
         <module name="ms-pedidos" />
         <module name="ms-inventario" />
       </profile>
@@ -18,7 +17,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="ms-reportes" />
         <module name="ms-locales" />
+        <module name="ms-caja" />
       </profile>
       <profile name="Annotation profile for MarFuego" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -35,10 +36,11 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="ms-caja" options="-parameters" />
-      <module name="ms-inventario" options="-parameters" />
-      <module name="ms-locales" options="-parameters" />
-      <module name="ms-menu" options="-parameters" />
-      <module name="ms-pedidos" options="-parameters" />
+      <module name="ms-inventario" options="" />
+      <module name="ms-locales" options="" />
+      <module name="ms-menu" options="" />
+      <module name="ms-pedidos" options="" />
+      <module name="ms-reportes" options="-parameters" />
     </option>
   </component>
 </project>

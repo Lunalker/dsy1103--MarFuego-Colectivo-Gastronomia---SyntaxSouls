@@ -1,5 +1,6 @@
 package com.marfuego.ms_caja.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -13,20 +14,51 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
+
+@Schema(
+        name = "Factura",
+        description = "Representa la Factura del sistema"
+)
+
 public class FacturaCaja {
+
+    @Schema(
+            description = "Identificador único",
+            example = "1"
+    )
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
+    @Schema(
+            description = "Razon social por el que expide la factura",
+            example = "Comercio"
+    )
     @NotBlank
     private String razonSocial;
 
+
+    @Schema(
+            description = "Rut completo del cliente",
+            example = "76543210-K"
+    )
     @NotBlank
     private String rut;
 
+    @Schema(
+            description = "Ingreso del monto total de la factura",
+            example = "10000"
+    )
     @Min(value = 0, message = "El monto total no puede ser negativo")
     private Double montoTotal;
 
+
+
+    @Schema(
+            description = "Metodo de pago con el que se opera ",
+            example = "EFECTIVO"
+    )
     @Enumerated(EnumType.STRING)
     @NotNull
     private MetodoPago metodoPago;
