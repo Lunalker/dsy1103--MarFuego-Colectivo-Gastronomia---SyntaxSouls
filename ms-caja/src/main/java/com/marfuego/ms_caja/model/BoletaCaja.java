@@ -27,7 +27,6 @@ public class BoletaCaja {
             description = "Identificador único",
             example = "1"
     )
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
