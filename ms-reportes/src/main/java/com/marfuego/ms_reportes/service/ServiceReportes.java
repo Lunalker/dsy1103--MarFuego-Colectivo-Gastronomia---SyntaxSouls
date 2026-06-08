@@ -112,7 +112,7 @@ public class ServiceReportes {
         return reporte;
     }
 
-    // Stock critico: ingredientes que estan bajo el minimo
+    // Stock crítico: ingredientes que están bajo el minimo
     public List<StockCriticoDTO> stockCritico() {
         log.info("Generando reporte de stock critico");
 
