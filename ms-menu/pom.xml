@@ -9,9 +9,9 @@
 		<relativePath/>
 	</parent>
 	<groupId>com.marfuego</groupId>
-	<artifactId>ms-inventario</artifactId>
+	<artifactId>ms-menu</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ms-inventario</name>
+	<name>ms-menu</name>
 
 	<properties>
 		<java.version>17</java.version>

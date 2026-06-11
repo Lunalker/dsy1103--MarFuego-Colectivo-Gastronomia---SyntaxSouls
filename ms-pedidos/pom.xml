@@ -9,9 +9,9 @@
 		<relativePath/>
 	</parent>
 	<groupId>com.marfuego</groupId>
-	<artifactId>ms-inventario</artifactId>
+	<artifactId>ms-pedidos</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ms-inventario</name>
+	<name>ms-pedidos</name>
 
 	<properties>
 		<java.version>17</java.version>
