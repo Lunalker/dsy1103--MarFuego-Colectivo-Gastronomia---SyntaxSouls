@@ -99,6 +99,32 @@ En la carpeta `postman/` esta la coleccion lista para importar
 └── README.md
 ```
 
+## Levantar Docker
+
+```
+# Construir y levantar todos los servicios
+docker compose up --build -d
+
+# Ver el estado de los contenedores
+docker compose ps
+
+# Ver logs en vivo
+docker compose logs -f
+```
+
+## Acceder a los microservicios con Swagger
+
+| # | Microservicio   | Puerto | Enlaces                               |
+|---|-----------------|--------|---------------------------------------|
+| 1 | ms-locales      | 8081   | http://localhost:8081/swagger-ui.html |
+| 2 | ms-menu         | 8082   | http://localhost:8082/swagger-ui.html |
+| 3 | ms-inventario   | 8083   | http://localhost:8083/swagger-ui.html |
+| 4 | ms-pedidos      | 8084   | http://localhost:8084/swagger-ui.html |
+| 5 | ms-caja         | 8085   | http://localhost:8085/swagger-ui.html |
+| 6 | ms-reportes     | 8086   | http://localhost:8086/swagger-ui.html |
+
+
+
 ## Estado del proyecto
 
 En desarrollo - EP2 2025

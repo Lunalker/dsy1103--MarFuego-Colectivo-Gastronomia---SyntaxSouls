@@ -13,7 +13,7 @@ public class OpenApiConfig {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("MarFuego - API de Locales y Mesas")
+                        .title("MarFuego - API de Pedidos")
                         .description("Microservicio de gestión de Pedidos. "
                                 + "Implementa la regla R3 (estado de los pedidos). "
                         )
