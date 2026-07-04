@@ -1,25 +1,33 @@
 # MarFuego Colectivo Gastronomia — DSY1103 Desarrollo FullStack 1
 
-Proyecto Semestral EP2 - sistema de microservicios para una cadena de
-restaurantes del sur de Chile (Puerto Montt, Pelluco, Ancud y Castro).
+Proyecto Semestral EP2 - sistema de microservicios para una cadena de restaurantes del sur de Chile (Puerto Montt, Pelluco, Ancud y Castro).
 
 ## Equipo
-| Nombre         | GitHub         |
+
+| Nombre | GitHub |
 |----------------|----------------|
 | Matias Jeldres | HappyPenguin05 |
-| Deiner Quero   | Lunalker       |
-| Benjamin Olea  | Binyax         |
+| Deiner Quero | Lunalker |
+| Benjamin Olea | Binyax |
+
+## Roles del equipo
+
+| Nombre | Rol |
+|--------|-----|
+| Matias Jeldres | Backend Developer |
+| Deiner Quero | Backend Developer |
+| Benjamin Olea | Backend Developer |
 
 ## Microservicios
 
-| # | Microservicio   | Puerto | Base de datos        | Responsabilidad |
+| # | Microservicio | Puerto | Base de datos | Responsabilidad |
 |---|-----------------|--------|----------------------|-----------------|
-| 1 | ms-locales      | 8081   | marfuego_locales     | Locales y mesas (R3) |
-| 2 | ms-menu         | 8082   | marfuego_menu        | Platos y disponibilidad (R1, R5) |
-| 3 | ms-inventario   | 8083   | marfuego_inventario  | Stock de ingredientes (R2) |
-| 4 | ms-pedidos      | 8084   | marfuego_pedidos     | Pedidos y detalles |
-| 5 | ms-caja         | 8085   | marfuego_caja        | Boletas y facturas (R4) |
-| 6 | ms-reportes     | 8086   | (sin BD)             | Reportes que consultan a otros MS |
+| 1 | ms-locales | 8081 | marfuego_locales | Locales y mesas (R3) |
+| 2 | ms-menu | 8082 | marfuego_menu | Platos y disponibilidad (R1, R5) |
+| 3 | ms-inventario | 8083 | marfuego_inventario | Stock de ingredientes (R2) |
+| 4 | ms-pedidos | 8084 | marfuego_pedidos | Pedidos y detalles |
+| 5 | ms-caja | 8085 | marfuego_caja | Boletas y facturas (R4) |
+| 6 | ms-reportes | 8086 | (sin BD) | Reportes que consultan a otros MS |
 
 ## Reglas de negocio implementadas
 
@@ -51,11 +59,13 @@ restaurantes del sur de Chile (Puerto Montt, Pelluco, Ancud y Castro).
 ## Como ejecutar el proyecto
 
 ### 1. Requisitos previos
+
 - Java 17 o superior
 - Laragon (o MySQL 8) corriendo en `localhost:3306` con usuario `root` sin password
 - IntelliJ IDEA o VSCode
 
 ### 2. Crear las bases de datos
+
 Ejecutar en HeidiSQL:
 
 ```sql
@@ -79,16 +89,15 @@ cd ms-caja       && ./mvnw spring-boot:run
 cd ms-reportes   && ./mvnw spring-boot:run
 ```
 
-Importante: levantar primero los 5 microservicios con BD antes de ms-reportes,
-porque ms-reportes los va a consultar.
+Importante: levantar primero los 5 microservicios con BD antes de ms-reportes, porque ms-reportes los va a consultar.
 
 ### 4. Probar con Postman
-En la carpeta `postman/` esta la coleccion lista para importar
-(`MarFuego.postman_collection.json`).
+
+En la carpeta `postman/` esta la coleccion lista para importar (`MarFuego.postman_collection.json`).
 
 ## Estructura del repositorio
 
-```
+```text
 ├── ms-locales/        # Microservicio de locales y mesas
 ├── ms-menu/           # Microservicio del menu
 ├── ms-inventario/     # Microservicio del inventario
@@ -102,3 +111,7 @@ En la carpeta `postman/` esta la coleccion lista para importar
 ## Estado del proyecto
 
 En desarrollo - EP2 2025
+
+## Licencia
+
+Este proyecto esta bajo la licencia MIT. Consulte el archivo `LICENSE` para mas informacion.
