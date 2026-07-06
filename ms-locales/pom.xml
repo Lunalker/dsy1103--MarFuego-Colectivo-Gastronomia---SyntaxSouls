@@ -71,6 +71,15 @@
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.8.12</version>
+				<configuration>
+					<excludes>
+						<exclude>**/*Application.class</exclude>
+						<exclude>**/config/**</exclude>
+						<exclude>**/dto/**</exclude>
+						<exclude>**/model/**</exclude>
+						<exclude>**/exception/**</exclude>
+					</excludes>
+				</configuration>
 				<executions>
 					<execution>
 						<goals>
