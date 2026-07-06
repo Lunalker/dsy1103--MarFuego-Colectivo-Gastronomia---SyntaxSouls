@@ -1,6 +1,6 @@
-# MarFuego — Colectivo de Gastronomía 🔥🌊
+# MarFuego — Colectivo de Gastronomía
 
-**DSY1103 — Desarrollo Full Stack I | Evaluación Parcial 3**
+**DSY1103 — Desarrollo Full Stack I | Examen Transversal**
 
 Sistema de **arquitectura de microservicios** para una cadena de restaurantes del sur de Chile (Puerto Montt, Pelluco, Ancud y Castro). El proyecto está compuesto por 6 microservicios de negocio independientes, un **API Gateway** que centraliza el acceso, y una base de datos MySQL por servicio. Todo se orquesta con Docker.
 
@@ -173,6 +173,18 @@ curl http://localhost:8080/api/v1/menu/platos
 curl http://localhost:8080/api/v1/inventario/ingredientes
 ```
 
+Ver el estado de los contenedores:
+
+```bash
+docker compose ps
+```
+
+Ver logs en vivo:
+
+```bash
+docker compose logs -f
+```
+
 Para apagar todo:
 
 ```bash
@@ -229,7 +241,7 @@ En la carpeta `postman/` está la colección lista para importar (`MarFuego.post
 
 ## Estado del proyecto
 
-Evaluación Parcial 3 — 2025. Arquitectura de microservicios operativa (local y vía Docker), con API Gateway, documentación Swagger por servicio y despliegue en contenedores.
+Examen Transversal — 2026. Arquitectura de microservicios operativa (local y vía Docker), con API Gateway, documentación Swagger por servicio y despliegue en contenedores.
 
 ---
 
