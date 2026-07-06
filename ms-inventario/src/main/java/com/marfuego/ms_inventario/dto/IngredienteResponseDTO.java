@@ -3,6 +3,10 @@ package com.marfuego.ms_inventario.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+/**
+ * DTO que se devuelve al cliente con la info de un ingrediente. Incluye el
+ * campo enAlerta, que sale de la regla R2 (si está bajo el mínimo o no).
+ */
 @Data
 @Schema(
         name = "IngredienteResponseDTO",

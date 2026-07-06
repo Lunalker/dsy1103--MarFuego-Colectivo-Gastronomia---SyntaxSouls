@@ -1,0 +1,5 @@
+CREATE DATABASE IF NOT EXISTS marfuego_locales;
+CREATE DATABASE IF NOT EXISTS marfuego_menu;
+CREATE DATABASE IF NOT EXISTS marfuego_inventario;
+CREATE DATABASE IF NOT EXISTS marfuego_pedidos;
+CREATE DATABASE IF NOT EXISTS marfuego_caja;

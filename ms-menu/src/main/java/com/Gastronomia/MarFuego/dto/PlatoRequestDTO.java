@@ -4,6 +4,10 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
+/**
+ * DTO que se usa cuando entra un plato para crearlo o actualizarlo. Trae las
+ * validaciones para que los datos lleguen bien antes de pasar al servicio.
+ */
 @Data
 @Schema(
         name = "PlatoRequestDTO",

@@ -7,7 +7,9 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.List;
 
-// Estructura JSON que se devuelve cuando ocurre un error
+/**
+ * Es el formato estándar de las respuestas de error de la API del menú.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

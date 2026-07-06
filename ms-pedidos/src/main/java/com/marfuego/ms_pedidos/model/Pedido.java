@@ -9,6 +9,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Entidad que representa la cabecera de un pedido y agrupa sus líneas de detalle.
+ * Se guarda en la tabla pedido.
+ */
 @Entity
 @Table(name = "pedido")
 @Data

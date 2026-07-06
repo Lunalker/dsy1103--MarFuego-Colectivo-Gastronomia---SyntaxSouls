@@ -13,6 +13,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Maneja los errores de todo el microservicio en un solo lugar. En vez de que
+ * cada método atrape sus errores, aquí se transforman las excepciones en una
+ * respuesta HTTP ordenada (ErrorResponse) con el código que corresponde.
+ */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 

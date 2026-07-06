@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Controlador REST de caja. Recibe las peticiones de /api/v1/caja (boletas y
+ * facturas) y le pasa el trabajo al CajaService.
+ */
 @RestController
 @RequestMapping("/api/v1/caja")
 
@@ -29,7 +33,7 @@ public class CajaController {
         this.service = service;
     }
 
-    //Aca esta lo que tenga que ver con las boletas
+    // ===== Boletas =====
 
     @Operation(
             summary = "Listar Boletas",
@@ -118,7 +122,7 @@ public class CajaController {
         return service.guardarBoleta(boleta);
     }
 
-    //Aca esta lo que tenga que ver con las facturas
+    // ===== Facturas =====
 
     @Operation(
             summary = "Listar Facturas",

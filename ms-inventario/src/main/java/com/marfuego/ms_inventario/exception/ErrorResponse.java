@@ -7,6 +7,10 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * Es el formato estándar que tienen todas las respuestas de error de la API.
+ * Trae la hora, el código, el mensaje, la ruta y el detalle de qué falló.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

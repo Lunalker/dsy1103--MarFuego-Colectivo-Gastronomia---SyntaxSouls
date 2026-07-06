@@ -6,7 +6,9 @@ import lombok.Data;
 import java.time.LocalDateTime;
 import java.util.List;
 
-// Mapea la respuesta de ms-pedidos para un pedido
+/**
+ * DTO para mapear lo que devuelve ms-pedidos de un pedido.
+ */
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PedidoDTO {

@@ -3,8 +3,9 @@ package com.marfuego.ms_reportes.dto.reporte;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
-// Reporte que consolida info de un local: cuantos platos, cuantos pedidos, cuanto vendio.
-// Este reporte se arma llamando a 3 microservicios (locales + menu + pedidos).
+/**
+ * Reporte que junta los datos de un local: su info, sus platos y números de sus pedidos.
+ */
 @Data
 @Schema(
         name = "ResumenLocalDTO",

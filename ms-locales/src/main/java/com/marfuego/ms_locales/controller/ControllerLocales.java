@@ -15,6 +15,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Controlador REST de locales y mesas. Recibe las peticiones de
+ * /api/v1/locales y le pasa el trabajo (incluida la regla R3) al ServiceLocales.
+ */
 @RestController
 @RequestMapping("/api/v1/locales")
 // @Tag: agrupa y describe los endpoints de este microservicio en Swagger

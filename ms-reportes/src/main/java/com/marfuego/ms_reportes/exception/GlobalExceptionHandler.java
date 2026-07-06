@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.time.LocalDateTime;
 
+/**
+ * Maneja en un solo lugar los errores del microservicio de reportes, incluidos
+ * los de comunicación cuando falla algún microservicio que se está consultando.
+ */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 

@@ -4,6 +4,9 @@ import com.marfuego.ms_locales.model.Ubicacion;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+/**
+ * DTO que se devuelve con la info de un local.
+ */
 @Data
 @Schema(
         name = "LocalResponseDTO",

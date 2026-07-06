@@ -6,14 +6,23 @@ import io.swagger.v3.oas.models.info.Info;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * Configuración de Swagger para el microservicio de pedidos. Arma la info que se
+ * ve en /swagger-ui.html.
+ */
 @Configuration
 public class OpenApiConfig {
 
+    /**
+     * Arma la documentación base del microservicio de pedidos.
+     *
+     * @return el objeto OpenAPI con la info del servicio
+     */
     @Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("MarFuego - API de Locales y Mesas")
+                        .title("MarFuego - API de Pedidos")
                         .description("Microservicio de gestión de Pedidos. "
                                 + "Implementa la regla R3 (estado de los pedidos). "
                         )

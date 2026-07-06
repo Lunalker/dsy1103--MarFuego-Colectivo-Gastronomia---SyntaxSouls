@@ -1,0 +1,123 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: marfuego-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: marfuego123
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - marfuego-net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  ms-locales:
+    build: ./ms-locales
+    container_name: ms-locales
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/marfuego_locales?useSSL=false&allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: marfuego123
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - marfuego-net
+
+  ms-menu:
+    build: ./ms-menu
+    container_name: ms-menu
+    ports:
+      - "8082:8082"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/marfuego_menu?useSSL=false&allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: marfuego123
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - marfuego-net
+
+  ms-inventario:
+    build: ./ms-inventario
+    container_name: ms-inventario
+    ports:
+      - "8083:8083"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/marfuego_inventario?useSSL=false&allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: marfuego123
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - marfuego-net
+
+  ms-pedidos:
+    build: ./ms-pedidos
+    container_name: ms-pedidos
+    ports:
+      - "8084:8084"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/marfuego_pedidos?useSSL=false&allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: marfuego123
+      MS_MENU_BASE_URL: http://ms-menu:8082
+      MS_INVENTARIO_BASE_URL: http://ms-inventario:8083
+      MS_CAJA_BASE_URL: http://ms-caja:8085
+      MS_LOCALES_BASE_URL: http://ms-locales:8081
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - marfuego-net
+
+  ms-caja:
+    build: ./ms-caja
+    container_name: ms-caja
+    ports:
+      - "8085:8085"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/marfuego_caja?useSSL=false&allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: marfuego123
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - marfuego-net
+
+  ms-reportes:
+    build: ./ms-reportes
+    container_name: ms-reportes
+    ports:
+      - "8086:8086"
+    environment:
+      MS_LOCALES_URL: http://ms-locales:8081
+      MS_MENU_URL: http://ms-menu:8082
+      MS_INVENTARIO_URL: http://ms-inventario:8083
+      MS_PEDIDOS_URL: http://ms-pedidos:8084
+    depends_on:
+      - ms-locales
+      - ms-menu
+      - ms-inventario
+      - ms-pedidos
+    networks:
+      - marfuego-net
+
+networks:
+  marfuego-net:
+    driver: bridge
+
+volumes:
+  mysql-data:

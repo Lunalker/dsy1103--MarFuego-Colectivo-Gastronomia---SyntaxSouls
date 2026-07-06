@@ -15,6 +15,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Controlador REST del menú. Recibe las peticiones que llegan a /api/v1/menu y
+ * le pasa el trabajo al ServiceMenu; él solo se encarga de recibir y responder.
+ */
 @RestController
 @RequestMapping("/api/v1/menu")
 @Tag(

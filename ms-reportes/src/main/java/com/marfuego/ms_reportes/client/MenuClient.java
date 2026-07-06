@@ -9,7 +9,10 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
 
-// Cliente que llama a ms-menu para traer datos de los platos
+/**
+ * Cliente que llama por REST a ms-menu con WebClient para traer datos de los
+ * platos.
+ */
 @Component
 public class MenuClient {
 
@@ -17,7 +20,11 @@ public class MenuClient {
     @Qualifier("menuWebClient")
     private WebClient webClient;
 
-    // Trae todos los platos
+    /**
+     * Le pide a ms-menu todos los platos.
+     *
+     * @return la lista de platos
+     */
     public List<PlatoDTO> listarPlatos() {
         return webClient.get()
                 .uri("/api/v1/menu/platos")
@@ -26,7 +33,12 @@ public class MenuClient {
                 .block();
     }
 
-    // Trae los platos de un local
+    /**
+     * Le pide a ms-menu los platos de un local.
+     *
+     * @param localId el id del local
+     * @return los platos de ese local
+     */
     public List<PlatoDTO> listarPlatosPorLocal(Long localId) {
         return webClient.get()
                 .uri("/api/v1/menu/platos/local/{localId}/disponibles", localId)

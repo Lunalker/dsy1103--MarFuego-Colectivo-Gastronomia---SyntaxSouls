@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * Es el formato estándar de las respuestas de error de la API de locales.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

@@ -11,6 +11,10 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
+/**
+ * Entidad que representa una boleta emitida por caja. Guarda el id del pedido,
+ * que es lo que hace funcionar la regla R4 (saber si un pedido fue pagado).
+ */
 @Entity
 @Data
 @NoArgsConstructor
@@ -34,7 +38,7 @@ public class BoletaCaja {
     // Id del pedido al que pertenece la boleta (R4: para validar pago del delivery)
 
     @Schema(
-            description = "Identificador único",
+            description = "Id del pedido asociado a la boleta (R4: para validar el pago del delivery)",
             example = "1"
     )
 

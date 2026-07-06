@@ -15,6 +15,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Controlador REST del inventario. Recibe las peticiones HTTP que llegan a
+ * /api/v1/inventario y no hace la lógica él mismo, sino que se la pasa al
+ * ServiceInventario. Básicamente es la puerta de entrada del microservicio.
+ */
 @RestController
 @RequestMapping("/api/v1/inventario")
 
@@ -49,7 +54,7 @@ public class ControllerInventario {
         return ResponseEntity.ok(service.listarTodos());
     }
 
-    // R2: ingredientes que estan bajo el stock minimo
+    // R2: ingredientes que están bajo el stock mínimo
     @Operation(
             summary = "Listar ingredientes en alerta",
             description = "Obtiene todos los ingredientes que esten en stock minimo")

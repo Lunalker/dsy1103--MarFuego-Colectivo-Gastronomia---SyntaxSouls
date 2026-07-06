@@ -6,6 +6,9 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.Data;
 
+/**
+ * DTO que se usa cuando entra una mesa para crearla o actualizarla.
+ */
 @Data
 @Schema(
         name = "MesaRequestDTO",

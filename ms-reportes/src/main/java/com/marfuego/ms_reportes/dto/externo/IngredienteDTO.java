@@ -3,7 +3,9 @@ package com.marfuego.ms_reportes.dto.externo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
-// Mapea la respuesta de ms-inventario para un ingrediente
+/**
+ * DTO para mapear lo que devuelve ms-inventario de un ingrediente.
+ */
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class IngredienteDTO {

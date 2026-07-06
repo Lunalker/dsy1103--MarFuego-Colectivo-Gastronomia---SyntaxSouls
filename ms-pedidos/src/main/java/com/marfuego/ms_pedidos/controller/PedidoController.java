@@ -15,6 +15,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Controlador REST de pedidos. Recibe las peticiones de /api/v1/pedidos y le
+ * pasa la lógica al PedidoService.
+ */
 @RestController
 @RequestMapping("/api/v1/pedidos")
 @Tag(

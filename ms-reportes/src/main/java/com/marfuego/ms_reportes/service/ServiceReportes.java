@@ -20,8 +20,11 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-// Service del ms-reportes.
-// Aqui se llaman a los otros microservicios y se arman los reportes.
+/**
+ * Aquí se arman los reportes. Como este microservicio no tiene base de datos
+ * propia, llama a los otros con los clientes WebClient y junta toda la info en
+ * un solo reporte: resumen del local, stock crítico y rentabilidad (regla R5).
+ */
 @Service
 public class ServiceReportes {
 
@@ -39,7 +42,13 @@ public class ServiceReportes {
     @Autowired
     private PedidosClient pedidosClient;
 
-    // Resumen de un local: junta info de 3 microservicios (locales + menu + pedidos)
+    /**
+     * Arma el resumen de un local juntando datos de ms-locales, ms-menu y
+     * ms-pedidos en un solo reporte.
+     *
+     * @param localId el id del local
+     * @return el resumen del local ya armado
+     */
     public ResumenLocalDTO resumenDeLocal(Long localId) {
         log.info("Generando resumen del local id={}", localId);
 
@@ -112,7 +121,12 @@ public class ServiceReportes {
         return reporte;
     }
 
-    // Stock crítico: ingredientes que están bajo el minimo
+    /**
+     * Devuelve los ingredientes que están en stock crítico, preguntándole a
+     * ms-inventario cuáles quedaron bajo el mínimo (regla R2).
+     *
+     * @return los ingredientes en stock crítico
+     */
     public List<StockCriticoDTO> stockCritico() {
         log.info("Generando reporte de stock critico");
 
@@ -138,7 +152,12 @@ public class ServiceReportes {
         return resultado;
     }
 
-    // Rentabilidad de cada plato (R5: margen 300%)
+    /**
+     * Calcula la rentabilidad de cada plato (la diferencia entre precio y costo,
+     * regla R5) con los datos que trae de ms-menu.
+     *
+     * @return la rentabilidad de cada plato
+     */
     public List<RentabilidadPlatoDTO> rentabilidadPlatos() {
         log.info("Generando reporte de rentabilidad de platos");
 
@@ -159,7 +178,7 @@ public class ServiceReportes {
             dto.setPrecioVenta(plato.getPrecioVenta());
             dto.setCostoProduccion(plato.getCostoProduccion());
 
-            // Calculos
+            // Calculamos el margen absoluto y el porcentaje de ganancia de cada plato (R5)
             if (plato.getCostoProduccion() != null && plato.getPrecioVenta() != null
                     && plato.getCostoProduccion() > 0) {
                 dto.setMargenAbsoluto(plato.getPrecioVenta() - plato.getCostoProduccion());

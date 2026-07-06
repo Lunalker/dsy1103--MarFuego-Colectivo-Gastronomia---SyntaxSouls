@@ -4,6 +4,9 @@ import com.marfuego.ms_locales.model.Estado;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+/**
+ * DTO que se devuelve con la info de una mesa, incluido su estado (R3).
+ */
 @Data
 @Schema(
         name = "MesaResponseDTO",

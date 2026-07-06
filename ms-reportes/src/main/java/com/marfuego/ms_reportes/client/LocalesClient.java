@@ -9,7 +9,10 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
 
-// Cliente que llama a ms-locales para traer datos de locales
+/**
+ * Cliente que llama por REST a ms-locales con WebClient para traer datos de
+ * los locales.
+ */
 @Component
 public class LocalesClient {
 
@@ -17,7 +20,12 @@ public class LocalesClient {
     @Qualifier("localesWebClient")
     private WebClient webClient;
 
-    // Trae un local por id
+    /**
+     * Le pide a ms-locales un local por su id.
+     *
+     * @param id el id del local
+     * @return el local que devuelve ms-locales
+     */
     public LocalDTO obtenerLocal(Long id) {
         return webClient.get()
                 .uri("/api/v1/locales/{id}", id)
@@ -26,7 +34,11 @@ public class LocalesClient {
                 .block();
     }
 
-    // Trae todos los locales
+    /**
+     * Le pide a ms-locales todos los locales.
+     *
+     * @return la lista de locales
+     */
     public List<LocalDTO> listarLocales() {
         return webClient.get()
                 .uri("/api/v1/locales")
