@@ -2,11 +2,9 @@ package com.Gastronomia.MarFuego.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
-import lombok.Data;
 
 @Entity
 @Table(name = "plato_menu")
-@Data
 @Schema(
         name = "PlatoMenu",
         description = "Representa un plato disponible dentro del menú gastronómico"
@@ -56,7 +54,6 @@ public class PlatoMenu {
     )
     private Double costoProduccion;
 
-    // R1: indica si el plato está disponible hoy en el local
     @Column(nullable = false)
     @Schema(
             description = "Indica si el plato se encuentra disponible para su venta",
@@ -70,4 +67,74 @@ public class PlatoMenu {
             example = "3"
     )
     private Long localId;
+
+    // Constructor vacío requerido por JPA
+    public PlatoMenu() {
+    }
+
+    // Getters y Setters
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public Double getPrecioVenta() {
+        return precioVenta;
+    }
+
+    public void setPrecioVenta(Double precioVenta) {
+        this.precioVenta = precioVenta;
+    }
+
+    public Double getCostoProduccion() {
+        return costoProduccion;
+    }
+
+    public void setCostoProduccion(Double costoProduccion) {
+        this.costoProduccion = costoProduccion;
+    }
+
+    public Boolean getDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(Boolean disponible) {
+        this.disponible = disponible;
+    }
+
+    public Long getLocalId() {
+        return localId;
+    }
+
+    public void setLocalId(Long localId) {
+        this.localId = localId;
+    }
 }

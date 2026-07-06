@@ -13,7 +13,7 @@ public class OpenApiConfig {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("MarFuego - API de Locales y Mesas")
+                        .title("MarFuego - API del Menú")
                         .description("Microservicio de gestión del Menu. "
                                 + "Implementa la regla R3 (estado del Menu). "
                         )

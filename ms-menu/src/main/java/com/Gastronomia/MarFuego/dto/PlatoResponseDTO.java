@@ -3,12 +3,83 @@ package com.Gastronomia.MarFuego.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
-@Data
 @Schema(
         name = "PlatoResponseDTO",
         description = "DTO que representa la información de un plato devuelta por la API"
 )
 public class PlatoResponseDTO {
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public Double getPrecioVenta() {
+        return precioVenta;
+    }
+
+    public void setPrecioVenta(Double precioVenta) {
+        this.precioVenta = precioVenta;
+    }
+
+    public Double getCostoProduccion() {
+        return costoProduccion;
+    }
+
+    public void setCostoProduccion(Double costoProduccion) {
+        this.costoProduccion = costoProduccion;
+    }
+
+    public Boolean getDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(Boolean disponible) {
+        this.disponible = disponible;
+    }
+
+    public Long getLocalId() {
+        return localId;
+    }
+
+    public void setLocalId(Long localId) {
+        this.localId = localId;
+    }
+
+    public Boolean getCumpleMargen() {
+        return cumpleMargen;
+    }
+
+    public void setCumpleMargen(Boolean cumpleMargen) {
+        this.cumpleMargen = cumpleMargen;
+    }
 
     @Schema(
             description = "Identificador único del plato",
