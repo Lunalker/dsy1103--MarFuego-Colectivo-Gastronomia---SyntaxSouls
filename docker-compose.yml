@@ -115,6 +115,29 @@ services:
     networks:
       - marfuego-net
 
+  # API Gateway: unica puerta de entrada (puerto 8080). Enruta a cada MS por su ruta base.
+  ms-gateway:
+    build: ./ms-gateway
+    container_name: ms-gateway
+    ports:
+      - "8080:8080"
+    environment:
+      MS_LOCALES_URI: http://ms-locales:8081
+      MS_MENU_URI: http://ms-menu:8082
+      MS_INVENTARIO_URI: http://ms-inventario:8083
+      MS_PEDIDOS_URI: http://ms-pedidos:8084
+      MS_CAJA_URI: http://ms-caja:8085
+      MS_REPORTES_URI: http://ms-reportes:8086
+    depends_on:
+      - ms-locales
+      - ms-menu
+      - ms-inventario
+      - ms-pedidos
+      - ms-caja
+      - ms-reportes
+    networks:
+      - marfuego-net
+
 networks:
   marfuego-net:
     driver: bridge
