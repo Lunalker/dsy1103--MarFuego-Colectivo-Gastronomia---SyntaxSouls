@@ -1,0 +1,53 @@
+server:
+  # Puerto único de entrada al sistema. Los clientes solo hablan con este puerto.
+  port: 8080
+
+spring:
+  application:
+    name: ms-gateway
+  cloud:
+    gateway:
+      # Filtro aplicado a TODAS las rutas: marca la respuesta para saber que pasó por el Gateway.
+      default-filters:
+        - AddResponseHeader=X-MarFuego-Gateway, true
+      routes:
+        # Cada ruta tiene un predicado (Path) que decide a qué microservicio va la petición.
+        # La 'uri' usa una variable de entorno (para Docker) con un valor por defecto (para local).
+        - id: ms-locales
+          uri: ${MS_LOCALES_URI:http://localhost:8081}
+          predicates:
+            - Path=/api/v1/locales/**
+
+        - id: ms-menu
+          uri: ${MS_MENU_URI:http://localhost:8082}
+          predicates:
+            - Path=/api/v1/menu/**
+
+        - id: ms-inventario
+          uri: ${MS_INVENTARIO_URI:http://localhost:8083}
+          predicates:
+            - Path=/api/v1/inventario/**
+
+        - id: ms-pedidos
+          uri: ${MS_PEDIDOS_URI:http://localhost:8084}
+          predicates:
+            - Path=/api/v1/pedidos/**
+          # Filtro propio de esta ruta: agrega una cabecera para identificar el origen.
+          filters:
+            - AddRequestHeader=X-Origen, marfuego-gateway
+
+        - id: ms-caja
+          uri: ${MS_CAJA_URI:http://localhost:8085}
+          predicates:
+            - Path=/api/v1/caja/**
+
+        - id: ms-reportes
+          uri: ${MS_REPORTES_URI:http://localhost:8086}
+          predicates:
+            - Path=/api/v1/reportes/**
+
+# Logs para poder seguir el enrutamiento durante la defensa.
+logging:
+  level:
+    org.springframework.cloud.gateway: INFO
+    com.marfuego.ms_gateway: INFO
