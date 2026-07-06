@@ -3,7 +3,9 @@ package com.marfuego.ms_reportes.dto.reporte;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
-// Reporte de rentabilidad: muestra el margen de cada plato (R5)
+/**
+ * Reporte de cuánto deja un plato: la diferencia entre su precio y su costo (regla R5).
+ */
 @Data
 @Schema(
         name = "RentabilidadPlatoDTO",

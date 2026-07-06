@@ -9,7 +9,10 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
 
-// Cliente que llama a ms-inventario
+/**
+ * Cliente que llama por REST a ms-inventario con WebClient para traer datos del
+ * stock.
+ */
 @Component
 public class InventarioClient {
 
@@ -17,7 +20,11 @@ public class InventarioClient {
     @Qualifier("inventarioWebClient")
     private WebClient webClient;
 
-    // Trae todos los ingredientes
+    /**
+     * Le pide a ms-inventario todos los ingredientes.
+     *
+     * @return la lista de ingredientes
+     */
     public List<IngredienteDTO> listarIngredientes() {
         return webClient.get()
                 .uri("/api/v1/inventario/ingredientes")
@@ -26,7 +33,12 @@ public class InventarioClient {
                 .block();
     }
 
-    // Trae los ingredientes en alerta (stock bajo el minimo)
+    /**
+     * Le pide a ms-inventario los ingredientes que están en alerta, o sea los
+     * que quedaron bajo su stock mínimo (regla R2).
+     *
+     * @return los ingredientes bajo el mínimo
+     */
     public List<IngredienteDTO> listarAlertas() {
         return webClient.get()
                 .uri("/api/v1/inventario/ingredientes/alertas")

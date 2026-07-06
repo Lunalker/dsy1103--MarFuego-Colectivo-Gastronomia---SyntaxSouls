@@ -5,6 +5,10 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.Data;
 
+/**
+ * Entidad que representa una línea de un pedido (un plato, su cantidad y su
+ * precio). Se guarda en la tabla detalle_pedido.
+ */
 @Entity
 @Table(name = "detalle_pedido")
 @Data

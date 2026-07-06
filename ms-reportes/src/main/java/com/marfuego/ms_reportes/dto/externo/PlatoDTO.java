@@ -3,7 +3,9 @@ package com.marfuego.ms_reportes.dto.externo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
-// Mapea la respuesta de ms-menu para un plato
+/**
+ * DTO para mapear lo que devuelve ms-menu de un plato.
+ */
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PlatoDTO {

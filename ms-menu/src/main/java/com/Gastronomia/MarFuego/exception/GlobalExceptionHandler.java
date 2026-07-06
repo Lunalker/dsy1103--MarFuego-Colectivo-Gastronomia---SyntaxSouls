@@ -13,13 +13,16 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-// Captura las excepciones de toda la app y las convierte a JSON con codigo HTTP
+/**
+ * Maneja en un solo lugar los errores del microservicio de menú y los convierte
+ * en respuestas HTTP ordenadas con el código que corresponde.
+ */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
     private static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
-    // 400: datos invalidos (Bean Validation)
+    // 400: datos inválidos (Bean Validation)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> handleValidacion(MethodArgumentNotValidException ex,
                                                           HttpServletRequest request) {
@@ -36,7 +39,7 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
 
-    // 404: no se encontro el recurso
+    // 404: no se encontró el recurso
     @ExceptionHandler(RecursoNoEncontradoException.class)
     public ResponseEntity<ErrorResponse> handleNoEncontrado(RecursoNoEncontradoException ex,
                                                             HttpServletRequest request) {

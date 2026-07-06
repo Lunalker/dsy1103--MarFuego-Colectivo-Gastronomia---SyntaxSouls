@@ -18,6 +18,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Aquí está la lógica de locales y mesas. Lo más importante es la regla R3: una
+ * mesa OCUPADA no se puede reservar, y al cerrar la cuenta pasa a LIMPIEZA por
+ * unos minutos antes de volver a quedar LIBRE.
+ */
 @Service
 public class ServiceLocales {
 
@@ -34,6 +39,11 @@ public class ServiceLocales {
 
     // ===== LOCALES =====
 
+    /**
+     * Devuelve todos los locales registrados.
+     *
+     * @return la lista de locales
+     */
     public List<LocalResponseDTO> listarLocales() {
         List<LocalLocales> locales = localRepo.findAll();
         List<LocalResponseDTO> resultado = new ArrayList<>();
@@ -43,6 +53,13 @@ public class ServiceLocales {
         return resultado;
     }
 
+    /**
+     * Busca un local por su id.
+     *
+     * @param id el id del local
+     * @return el local encontrado
+     * @throws RecursoNoEncontradoException si el local no existe
+     */
     public LocalResponseDTO obtenerLocal(Long id) {
         LocalLocales local = localRepo.findById(id)
                 .orElseThrow(() -> new RecursoNoEncontradoException(
@@ -50,6 +67,12 @@ public class ServiceLocales {
         return toLocalDTO(local);
     }
 
+    /**
+     * Crea un local nuevo con los datos del DTO.
+     *
+     * @param dto los datos del local
+     * @return el local ya creado, con su id
+     */
     public LocalResponseDTO crearLocal(LocalRequestDTO dto) {
         log.info("Creando local: {}", dto.getNombre());
         LocalLocales local = new LocalLocales();
@@ -59,6 +82,14 @@ public class ServiceLocales {
         return toLocalDTO(localRepo.save(local));
     }
 
+    /**
+     * Actualiza un local que ya existe con los datos nuevos.
+     *
+     * @param id  el id del local a modificar
+     * @param dto los datos nuevos
+     * @return el local actualizado
+     * @throws RecursoNoEncontradoException si el local no existe
+     */
     public LocalResponseDTO actualizarLocal(Long id, LocalRequestDTO dto) {
         LocalLocales local = localRepo.findById(id)
                 .orElseThrow(() -> new RecursoNoEncontradoException(
@@ -69,6 +100,12 @@ public class ServiceLocales {
         return toLocalDTO(localRepo.save(local));
     }
 
+    /**
+     * Borra un local según su id.
+     *
+     * @param id el id del local a eliminar
+     * @throws RecursoNoEncontradoException si el local no existe
+     */
     public void eliminarLocal(Long id) {
         if (!localRepo.existsById(id)) {
             throw new RecursoNoEncontradoException("Local con id " + id + " no encontrado");
@@ -78,6 +115,12 @@ public class ServiceLocales {
 
     // ===== MESAS =====
 
+    /**
+     * Devuelve todas las mesas. Antes de devolverlas revisa si a alguna en
+     * LIMPIEZA ya le tocó volver a LIBRE (regla R3).
+     *
+     * @return la lista de mesas
+     */
     public List<MesaResponseDTO> listarMesas() {
         List<MesaLocales> mesas = mesaRepo.findAll();
         List<MesaResponseDTO> resultado = new ArrayList<>();
@@ -88,6 +131,12 @@ public class ServiceLocales {
         return resultado;
     }
 
+    /**
+     * Devuelve las mesas de un local, aplicando la revisión de la regla R3.
+     *
+     * @param localId el id del local
+     * @return las mesas de ese local
+     */
     public List<MesaResponseDTO> listarMesasPorLocal(Long localId) {
         List<MesaLocales> mesas = mesaRepo.findByLocalId(localId);
         List<MesaResponseDTO> resultado = new ArrayList<>();
@@ -98,7 +147,12 @@ public class ServiceLocales {
         return resultado;
     }
 
-    // Lista las mesas que estan en un estado dado (LIBRE, RESERVADA, OCUPADA, LIMPIEZA)
+    /**
+     * Devuelve las mesas que están en un estado dado.
+     *
+     * @param estado el estado por el que se filtra (LIBRE, RESERVADA, OCUPADA o LIMPIEZA)
+     * @return las mesas en ese estado
+     */
     public List<MesaResponseDTO> listarMesasPorEstado(Estado estado) {
         List<MesaLocales> mesas = mesaRepo.findByEstado(estado);
         List<MesaResponseDTO> resultado = new ArrayList<>();
@@ -109,6 +163,13 @@ public class ServiceLocales {
         return resultado;
     }
 
+    /**
+     * Busca una mesa por su id, revisando de paso la regla R3.
+     *
+     * @param id el id de la mesa
+     * @return la mesa encontrada
+     * @throws RecursoNoEncontradoException si la mesa no existe
+     */
     public MesaResponseDTO obtenerMesa(Long id) {
         MesaLocales mesa = mesaRepo.findById(id)
                 .orElseThrow(() -> new RecursoNoEncontradoException(
@@ -117,6 +178,13 @@ public class ServiceLocales {
         return toMesaDTO(mesa);
     }
 
+    /**
+     * Crea una mesa dentro de un local. La mesa siempre nace en estado LIBRE.
+     *
+     * @param dto los datos de la mesa
+     * @return la mesa ya creada
+     * @throws RecursoNoEncontradoException si el local indicado no existe
+     */
     public MesaResponseDTO crearMesa(MesaRequestDTO dto) {
         LocalLocales local = localRepo.findById(dto.getLocalId())
                 .orElseThrow(() -> new RecursoNoEncontradoException(
@@ -131,6 +199,14 @@ public class ServiceLocales {
         return toMesaDTO(mesaRepo.save(mesa));
     }
 
+    /**
+     * Actualiza los datos de una mesa y el local al que pertenece.
+     *
+     * @param id  el id de la mesa
+     * @param dto los datos nuevos de la mesa
+     * @return la mesa actualizada
+     * @throws RecursoNoEncontradoException si la mesa o el local no existen
+     */
     public MesaResponseDTO actualizarMesa(Long id, MesaRequestDTO dto) {
         MesaLocales mesa = mesaRepo.findById(id)
                 .orElseThrow(() -> new RecursoNoEncontradoException(
@@ -147,6 +223,12 @@ public class ServiceLocales {
         return toMesaDTO(mesaRepo.save(mesa));
     }
 
+    /**
+     * Borra una mesa según su id.
+     *
+     * @param id el id de la mesa a eliminar
+     * @throws RecursoNoEncontradoException si la mesa no existe
+     */
     public void eliminarMesa(Long id) {
         if (!mesaRepo.existsById(id)) {
             throw new RecursoNoEncontradoException("Mesa con id " + id + " no encontrada");
@@ -156,6 +238,14 @@ public class ServiceLocales {
 
     // ===== R3: cambios de estado de mesa =====
 
+    /**
+     * Reserva una mesa (regla R3). Solo se puede si la mesa está LIBRE.
+     *
+     * @param id el id de la mesa
+     * @return la mesa ahora en estado RESERVADA
+     * @throws NegocioException             si la mesa no está LIBRE
+     * @throws RecursoNoEncontradoException si la mesa no existe
+     */
     public MesaResponseDTO reservarMesa(Long id) {
         MesaLocales mesa = mesaRepo.findById(id)
                 .orElseThrow(() -> new RecursoNoEncontradoException(
@@ -170,6 +260,15 @@ public class ServiceLocales {
         return toMesaDTO(mesaRepo.save(mesa));
     }
 
+    /**
+     * Marca una mesa como OCUPADA (regla R3). No se puede si ya está ocupada o
+     * si está en LIMPIEZA.
+     *
+     * @param id el id de la mesa
+     * @return la mesa ahora en estado OCUPADA
+     * @throws NegocioException             si la mesa está OCUPADA o en LIMPIEZA
+     * @throws RecursoNoEncontradoException si la mesa no existe
+     */
     public MesaResponseDTO ocuparMesa(Long id) {
         MesaLocales mesa = mesaRepo.findById(id)
                 .orElseThrow(() -> new RecursoNoEncontradoException(
@@ -186,7 +285,15 @@ public class ServiceLocales {
         return toMesaDTO(mesaRepo.save(mesa));
     }
 
-    // R3: al cerrar la boleta la mesa pasa a LIMPIEZA por 15 min
+    /**
+     * Libera una mesa OCUPADA cuando se cierra la cuenta (regla R3): la pasa a
+     * LIMPIEZA y guarda a qué hora empezó, para después poder soltarla.
+     *
+     * @param id el id de la mesa
+     * @return la mesa ahora en estado LIMPIEZA
+     * @throws NegocioException             si la mesa no está OCUPADA
+     * @throws RecursoNoEncontradoException si la mesa no existe
+     */
     public MesaResponseDTO liberarMesa(Long id) {
         MesaLocales mesa = mesaRepo.findById(id)
                 .orElseThrow(() -> new RecursoNoEncontradoException(
@@ -206,7 +313,12 @@ public class ServiceLocales {
 
     // ===== Auxiliares =====
 
-    // R3: si pasaron 15 min, la mesa en LIMPIEZA vuelve a LIBRE
+    /**
+     * Revisa si una mesa que está en LIMPIEZA ya cumplió los 15 minutos y, si es
+     * así, la vuelve a dejar LIBRE (regla R3).
+     *
+     * @param mesa la mesa que se está revisando
+     */
     private void verificarFinLimpieza(MesaLocales mesa) {
         if (mesa.getEstado() == Estado.LIMPIEZA && mesa.getInicioLimpieza() != null) {
             long minutos = Duration.between(mesa.getInicioLimpieza(), LocalDateTime.now()).toMinutes();
@@ -218,6 +330,12 @@ public class ServiceLocales {
         }
     }
 
+    /**
+     * Convierte una entidad de local en su DTO de respuesta.
+     *
+     * @param local la entidad que viene de la base
+     * @return el DTO equivalente
+     */
     private LocalResponseDTO toLocalDTO(LocalLocales local) {
         LocalResponseDTO dto = new LocalResponseDTO();
         dto.setId(local.getId());
@@ -227,6 +345,12 @@ public class ServiceLocales {
         return dto;
     }
 
+    /**
+     * Convierte una entidad de mesa en su DTO de respuesta.
+     *
+     * @param mesa la entidad que viene de la base
+     * @return el DTO equivalente
+     */
     private MesaResponseDTO toMesaDTO(MesaLocales mesa) {
         MesaResponseDTO dto = new MesaResponseDTO();
         dto.setId(mesa.getId());

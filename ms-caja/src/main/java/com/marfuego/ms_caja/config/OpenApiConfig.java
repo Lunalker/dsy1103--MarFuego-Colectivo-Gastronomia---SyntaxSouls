@@ -6,8 +6,17 @@ import io.swagger.v3.oas.models.info.Info;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+    /**
+     * Configuración de Swagger para el microservicio de caja. Arma la info que
+     * se ve en /swagger-ui.html.
+     */
     @Configuration
     public class OpenApiConfig {
+        /**
+         * Arma la documentación base del microservicio de caja.
+         *
+         * @return el objeto OpenAPI con la info del servicio
+         */
         @Bean
         public OpenAPI customOpenAPI() {
             return new OpenAPI()

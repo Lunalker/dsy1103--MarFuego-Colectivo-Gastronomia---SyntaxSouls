@@ -4,6 +4,11 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.Data;
 
+/**
+ * Entidad que representa un ingrediente del inventario. Se guarda en la tabla
+ * ingrediente_inventario. La alerta de la regla R2 se saca comparando el
+ * stockActual con el stockMinimo.
+ */
 @Entity
 @Table(name = "ingrediente_inventario")
 @Data

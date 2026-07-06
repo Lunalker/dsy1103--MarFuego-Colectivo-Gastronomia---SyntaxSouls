@@ -5,6 +5,10 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 
+/**
+ * Entidad que representa una mesa de un local. Se guarda en la tabla mesa. Los
+ * campos estado e inicioLimpieza son los que hacen funcionar la regla R3.
+ */
 @Entity
 @Table(name = "mesa")
 @Data
@@ -24,7 +28,7 @@ public class MesaLocales {
     @Column(nullable = false, length = 20)
     private Estado estado;
 
-    // R3: guardamos la hora cuando empieza la limpieza, asi sabemos cuando pasa a LIBRE
+    // R3: guardamos la hora cuando empieza la limpieza, así sabemos cuándo pasa a LIBRE
     @Column(name = "inicio_limpieza")
     private LocalDateTime inicioLimpieza;
 

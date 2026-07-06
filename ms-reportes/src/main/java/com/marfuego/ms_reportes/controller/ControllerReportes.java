@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-// Controller del ms-reportes.
-// Expone endpoints que consolidan informacion de otros microservicios.
+/**
+ * Controlador REST de reportes. Recibe las peticiones de /api/v1/reportes y le
+ * pasa al ServiceReportes el armado de cada reporte.
+ */
 @RestController
 @RequestMapping("/api/v1/reportes")
 // @Tag: agrupa y describe los endpoints de este microservicio en Swagger
@@ -25,7 +27,7 @@ public class ControllerReportes {
     @Autowired
     private ServiceReportes service;
 
-    // Resumen de un local: junta info de 3 MS (locales, menu, pedidos)
+    // Resumen de un local: junta info de 3 MS (locales, menú, pedidos)
     @Operation(
             summary = "Resumen de local",
             description = "Consolida informacion de un local (locales, menu y pedidos)")
@@ -42,7 +44,7 @@ public class ControllerReportes {
         return ResponseEntity.ok(service.resumenDeLocal(id));
     }
 
-    // Lista los ingredientes con stock bajo el minimo (R2)
+    // Lista los ingredientes con stock bajo el mínimo (R2)
     @Operation(
             summary = "Stock critico",
             description = "R2: lista los ingredientes con stock bajo el minimo")

@@ -13,6 +13,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Maneja en un solo lugar los errores del microservicio de pedidos y los
+ * convierte en respuestas HTTP ordenadas.
+ */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 

@@ -3,6 +3,9 @@ package com.marfuego.ms_pedidos.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+/**
+ * DTO que se devuelve para una línea de detalle, con su subtotal calculado.
+ */
 @Data
 @Schema(
         name = "DetallePedidoResponseDTO",

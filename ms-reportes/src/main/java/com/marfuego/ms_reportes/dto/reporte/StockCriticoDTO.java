@@ -3,7 +3,9 @@ package com.marfuego.ms_reportes.dto.reporte;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
-// Reporte de stock crítico: ingredientes que están bajo el minimo (R2)
+/**
+ * Reporte de un ingrediente que quedó en stock crítico (bajo el mínimo, regla R2).
+ */
 @Data
 @Schema(
         name = "StockCriticoDTO",

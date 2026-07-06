@@ -4,6 +4,11 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.Data;
 
+/**
+ * Entidad que representa un plato del menú. Se guarda en la tabla plato_menu.
+ * Los campos de precio y costo son los que se usan para la regla R5 y el campo
+ * disponible para la R1.
+ */
 @Entity
 @Table(name = "plato_menu")
 @Data

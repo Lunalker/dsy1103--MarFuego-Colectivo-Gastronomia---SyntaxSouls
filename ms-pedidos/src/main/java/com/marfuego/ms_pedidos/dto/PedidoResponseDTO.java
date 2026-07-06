@@ -6,6 +6,9 @@ import lombok.Data;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * DTO que se devuelve con la info de un pedido, incluidos sus detalles y su total.
+ */
 @Data
 @Schema(
         name = "PedidoResponseDTO",

@@ -13,6 +13,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Maneja en un solo lugar los errores del microservicio de locales (incluidos
+ * los de la regla R3) y los convierte en respuestas HTTP ordenadas.
+ */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 

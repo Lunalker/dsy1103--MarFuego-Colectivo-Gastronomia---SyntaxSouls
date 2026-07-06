@@ -7,6 +7,11 @@ import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
+/**
+ * DTO que se usa cuando entra un ingrediente para crearlo o actualizarlo.
+ * Trae las validaciones para asegurarse de que los datos lleguen bien antes
+ * de pasar al servicio.
+ */
 @Data
 @Schema(
         name = "IngredienteRequestDTO",

@@ -7,6 +7,9 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
+/**
+ * DTO que se usa cuando entra un local para crearlo o actualizarlo.
+ */
 @Data
 @Schema(
         name = "LocalRequestDTO",

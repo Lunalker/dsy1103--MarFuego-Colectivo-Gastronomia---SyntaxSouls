@@ -3,7 +3,9 @@ package com.marfuego.ms_reportes.dto.externo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
-// Detalle de un pedido (cada linea del pedido)
+/**
+ * DTO para mapear una línea de detalle de un pedido que llega desde ms-pedidos.
+ */
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DetallePedidoDTO {

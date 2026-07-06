@@ -3,6 +3,10 @@ package com.Gastronomia.MarFuego.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+/**
+ * DTO que se devuelve al cliente con la info de un plato. Incluye el campo que
+ * indica si cumple la regla R5 del margen.
+ */
 @Data
 @Schema(
         name = "PlatoResponseDTO",

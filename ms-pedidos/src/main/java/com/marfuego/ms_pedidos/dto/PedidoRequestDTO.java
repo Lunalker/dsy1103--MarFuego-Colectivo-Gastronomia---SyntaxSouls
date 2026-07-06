@@ -7,6 +7,9 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * DTO que se usa cuando entra un pedido para crearlo o actualizarlo, con sus detalles.
+ */
 @Data
 @Schema(
         name = "PedidoRequestDTO",

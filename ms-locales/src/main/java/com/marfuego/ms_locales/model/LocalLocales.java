@@ -3,6 +3,10 @@ package com.marfuego.ms_locales.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+/**
+ * Entidad que representa un local de la cadena. Se guarda en la tabla local y
+ * agrupa a sus mesas.
+ */
 @Entity
 @Table(name = "local")
 @Data

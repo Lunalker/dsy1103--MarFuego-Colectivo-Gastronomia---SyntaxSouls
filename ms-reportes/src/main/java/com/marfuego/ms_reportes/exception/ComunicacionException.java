@@ -1,8 +1,9 @@
 package com.marfuego.ms_reportes.exception;
 
-// Se lanza cuando falla la comunicacion con otro microservicio
-// (por ejemplo: timeout, MS caido, error 500, etc).
-// Traducida a HTTP 503 (Service Unavailable).
+/**
+ * Se lanza cuando falla la comunicación con otro microservicio (se cae, tarda
+ * demasiado o devuelve un error). Termina en un HTTP 503.
+ */
 public class ComunicacionException extends RuntimeException {
 
     public ComunicacionException(String mensaje) {

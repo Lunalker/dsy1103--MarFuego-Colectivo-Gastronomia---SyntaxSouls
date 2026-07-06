@@ -6,8 +6,10 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.Map;
 
-// Cliente que llama a ms-menu para verificar si un plato existe y esta disponible.
-// Lo usa el PedidoService al crear un pedido (R1).
+/**
+ * Cliente que llama por REST a ms-menu con WebClient. Lo usa el PedidoService
+ * para revisar, al crear un pedido, si un plato existe y está disponible (R1).
+ */
 @Component
 public class MenuClient {
 
@@ -17,7 +19,14 @@ public class MenuClient {
         this.webClient = WebClient.builder().baseUrl(menuUrl).build();
     }
 
-    // R1: verifica si el plato existe y esta marcado como disponible
+    /**
+     * Le pregunta a ms-menu si un plato existe y está disponible (regla R1). Si
+     * ms-menu no responde, devuelve false para no dejar pasar el pedido con un
+     * plato que no se pudo confirmar.
+     *
+     * @param platoId el id del plato que se quiere revisar
+     * @return true si el plato está disponible, false si no o si ms-menu no responde
+     */
     public boolean platoDisponible(Long platoId) {
         try {
             Map<?, ?> respuesta = webClient.get()
@@ -32,7 +41,7 @@ public class MenuClient {
             Object disponible = respuesta.get("disponible");
             return Boolean.TRUE.equals(disponible);
         } catch (Exception e) {
-            // Si ms-menu no responde, asumimos que no esta disponible
+            // Si ms-menu no responde, asumimos que no está disponible
             return false;
         }
     }

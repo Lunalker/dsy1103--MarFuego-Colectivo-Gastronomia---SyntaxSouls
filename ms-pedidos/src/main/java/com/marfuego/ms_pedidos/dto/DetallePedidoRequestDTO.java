@@ -4,6 +4,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
+/**
+ * DTO que se usa para una línea de detalle que entra en un pedido.
+ */
 @Data
 @Schema(
         name = "DetallePedidoRequestDTO",
